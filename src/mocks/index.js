@@ -1,7 +1,13 @@
 export const machOne = {
-  foo: {},
-  bar: {},
-  baz: {},
+  foo: {
+    children: [
+      {
+        bar: {
+          children: [],
+        },
+      },
+    ],
+  },
 };
 
 export default exports;

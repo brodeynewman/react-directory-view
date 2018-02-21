@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import Directory from './components/directory';
+import Tree from './components/Tree';
+import { machOne } from './mocks';
 
 const App = () => (
   <Fragment>
-    <Directory directoryClassNames="lets-go">
-      In here bro
-    </Directory>
+    <Tree
+      treeData={machOne}
+    />
   </Fragment>
 );
 
