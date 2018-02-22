@@ -1,20 +1,49 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
+import Arrow from './arrow';
 
-const TreeNode = (props) => {
-  console.log('???');
+class TreeNode extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Fragment>
-      {
-        props.child || null
-      }
-      {
-        props.children || null
-      }
-    </Fragment>
-  );
+    this.state = {
+      isCollapsed: false,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    return this.setState(prevState => ({ isCollapsed: !prevState.isCollapsed }));
+  }
+
+  render() {
+    const { isCollapsed } = this.state;
+    const { collapseAll } = this.context;
+
+    return (
+      <Fragment>
+        <div>
+          <Arrow isCollapsed={isCollapsed || collapseAll} onClick={this.handleClick} />
+          {
+            this.props.child || null
+          }
+        </div>
+        {
+          this.props.children && (
+            <div style={{ display: isCollapsed || collapseAll ? 'inline-block' : 'none' }}>
+              {this.props.children}
+            </div>
+        )
+        }
+      </Fragment>
+    );
+  }
+}
+
+TreeNode.contextTypes = {
+  collapseAll: PropTypes.bool,
 };
 
 TreeNode.propTypes = {

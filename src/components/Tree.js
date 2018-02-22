@@ -45,16 +45,30 @@ class Tree extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      collapseAll: false,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  getChildContext() {
+    return { collapseAll: this.state.collapseAll };
+  }
+
+  handleClick() {
+    this.setState(prevState => ({ collapseAll: !prevState.collapseAll }));
   }
 
   render() {
     const { treeData } = this.props;
+    const { collapseAll } = this.state;
 
     const factoryWithProps = treeFactory(this.props);
 
     return (
       <div>
+        <button onClick={this.handleClick}>{collapseAll ? 'Hide all' : 'Collapse all'}</button>
         {
           treeData ?
           factoryWithProps.mapChildrenRecursively(treeData)
@@ -64,6 +78,10 @@ class Tree extends Component {
     );
   }
 }
+
+Tree.childContextTypes = {
+  collapseAll: PropTypes.bool,
+};
 
 Tree.propTypes = {
 };
