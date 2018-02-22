@@ -15,12 +15,14 @@ class TreeNode extends Component {
   }
 
   handleClick() {
+    console.log(this.state.isCollapsed);
     return this.setState(prevState => ({ isCollapsed: !prevState.isCollapsed }));
   }
 
   render() {
     const { isCollapsed } = this.state;
     const { collapseAll } = this.context;
+    const { marginLeft } = this.props;
 
     return (
       <Fragment>
@@ -32,10 +34,15 @@ class TreeNode extends Component {
         </div>
         {
           this.props.children && (
-            <div style={{ display: isCollapsed || collapseAll ? 'inline-block' : 'none' }}>
+            <div
+              style={{
+                display: isCollapsed || collapseAll ? 'inline-block' : 'none',
+                marginLeft,
+              }}
+            >
               {this.props.children}
             </div>
-        )
+          )
         }
       </Fragment>
     );

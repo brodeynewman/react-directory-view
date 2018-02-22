@@ -14,7 +14,7 @@ const mapChildNodes = (children) => {
  * @param {Object} props - component props
  * @param {Object} tree - current tree node
  */
-const mapChildrenRecursively = (props, tree) => {
+const mapChildrenRecursively = (props, tree, marginLeft = 15) => {
   const keys = _.keys(tree);
 
   if (keys.length) {
@@ -22,9 +22,10 @@ const mapChildrenRecursively = (props, tree) => {
       <TreeNode
         key={_.uniqueId(`${child}_${index}`)}
         child={child}
+        marginLeft={marginLeft}
       >
         {
-          mapChildrenRecursively(props, tree[child])
+          mapChildrenRecursively(props, tree[child], marginLeft + 5)
         }
       </TreeNode>
     ));
