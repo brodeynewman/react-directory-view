@@ -15,25 +15,33 @@ class TreeNode extends Component {
   }
 
   handleClick() {
-    console.log(this.state.isCollapsed);
     return this.setState(prevState => ({ isCollapsed: !prevState.isCollapsed }));
   }
 
   render() {
     const { isCollapsed } = this.state;
     const { collapseAll } = this.context;
-    const { marginLeft } = this.props;
+    const {
+      marginLeft, isDeepestChild, child, children,
+    } = this.props;
 
     return (
       <Fragment>
         <div>
-          <Arrow isCollapsed={isCollapsed || collapseAll} onClick={this.handleClick} />
           {
-            this.props.child || null
+            !isDeepestChild && (<Arrow
+              isCollapsed={isCollapsed || collapseAll}
+              onClick={this.handleClick}
+            />)
+          }
+          {
+            !isDeepestChild
+            ? child || null
+            : <span style={{ marginLeft: marginLeft - 5 }} >{child || null}</span>
           }
         </div>
         {
-          this.props.children && (
+          children && (
             <div
               style={{
                 display: isCollapsed || collapseAll ? 'inline-block' : 'none',

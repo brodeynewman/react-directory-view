@@ -1,13 +1,28 @@
-export const machOne = {
-  foo: {
+export const machOne = [
+  {
+    path: 'this',
     children: [
       {
-        bar: {
-          children: [],
-        },
+        path: 'is',
+        children: [
+          {
+            path: 'a',
+            children: [
+              {
+                path: 'few',
+                children: [
+                  {
+                    path: 'deep',
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
     ],
   },
-};
+];
 
 export default exports;
