@@ -20,6 +20,7 @@ const mapChildrenRecursively = (props, tree, marginLeft = 15) => {
           marginLeft={marginLeft}
           isDeepestChild={!_.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}.length`)}
           onExpand={_.get(props, 'treeMap.onExpand', _.noop)}
+          onContract={_.get(props, 'treeMap.onContract', _.noop)}
           {...child}
         >
           {
@@ -72,7 +73,6 @@ class Tree extends Component {
 
     return (
       <div>
-        <button onClick={this.handleClick}>{collapseAll ? 'Hide all' : 'Collapse all'}</button>
         {
           treeData ?
           factoryWithProps.mapChildrenRecursively(treeData)

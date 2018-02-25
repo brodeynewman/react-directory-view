@@ -11,13 +11,20 @@ class TreeNode extends Component {
       isCollapsed: false,
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleExpand = this.handleExpand.bind(this);
+    this.handleContract = this.handleContract.bind(this);
   }
 
-  handleClick() {
-    this.props.onExpand(this.props);
+  handleContract() {
+    this.setState({ isCollapsed: false });
 
-    return this.setState(prevState => ({ isCollapsed: !prevState.isCollapsed }));
+    return this.props.onContract(this.props);
+  }
+
+  handleExpand() {
+    this.setState({ isCollapsed: true });
+
+    return this.props.onExpand(this.props);
   }
 
   render() {
@@ -33,13 +40,14 @@ class TreeNode extends Component {
           {
             !isDeepestChild && (<Arrow
               isCollapsed={isCollapsed || collapseAll}
-              onClick={this.handleClick}
+              onExpand={this.handleExpand}
+              onContract={this.handleContract}
             />)
           }
           {
             !isDeepestChild
             ? child || null
-            : <span style={{ marginLeft: marginLeft - 5 }} >{child || null}</span>
+            : <span style={{ marginLeft: marginLeft - 5 }}>{child || null}</span>
           }
         </div>
         {

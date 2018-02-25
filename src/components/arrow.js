@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Arrow = ({ onClick, isCollapsed }) => (
+const Arrow = ({ onExpand, onContract, isCollapsed }) => (
   <i
-    onClick={onClick}
+    onClick={!isCollapsed ? onExpand : onContract}
     style={{
       width: 0,
       height: 0,
