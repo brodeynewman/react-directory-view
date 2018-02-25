@@ -9,21 +9,29 @@ import TreeNode from './TreeNode';
  * @param {Object} tree - current tree node
  */
 const mapChildrenRecursively = (props, tree, marginLeft = 15) => {
-  console.log(tree);
-
   if (tree.length) {
-    return _.map(tree, (child, index) => (
-      <TreeNode
-        key={_.uniqueId(`${index}`)}
-        child={child.path}
-        marginLeft={marginLeft}
-        isDeepestChild={!_.get(child, 'children.length')}
-      >
-        {
-          mapChildrenRecursively(props, _.get(child, 'children', []), marginLeft + 5)
-        }
-      </TreeNode>
-    ));
+    return _.map(tree, (child, index) => {
+      console.log(child);
+
+      return (
+        <TreeNode
+          key={_.uniqueId(`${index}`)}
+          child={_.get(child, `${_.get(props, 'treeMap.childToRender', '')}`)}
+          marginLeft={marginLeft}
+          isDeepestChild={!_.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}.length`)}
+          onExpand={_.get(props, 'treeMap.onExpand', _.noop)}
+          {...child}
+        >
+          {
+            mapChildrenRecursively(
+              props,
+              _.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}`, []),
+              marginLeft + 5,
+            )
+          }
+        </TreeNode>
+      );
+    });
   }
 
   return null;

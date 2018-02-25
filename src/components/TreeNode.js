@@ -15,6 +15,8 @@ class TreeNode extends Component {
   }
 
   handleClick() {
+    this.props.onExpand(this.props);
+
     return this.setState(prevState => ({ isCollapsed: !prevState.isCollapsed }));
   }
 
