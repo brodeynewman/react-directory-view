@@ -2,7 +2,7 @@
 
 ## How to use
 
-Import the ```Tree``` Component, and specify a ```treeMap``` and ```treeData``` props.
+Import the ```Tree``` Component, and specify ```treeMap``` and ```treeData``` props.
 
 ```javascript
 const App = () => (
