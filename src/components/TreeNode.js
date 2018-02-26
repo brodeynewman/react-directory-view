@@ -31,7 +31,7 @@ class TreeNode extends Component {
     const { isCollapsed } = this.state;
     const { collapseAll } = this.context;
     const {
-      marginLeft, isDeepestChild, child, children,
+      marginLeft, isDeepestChild, child, children, Component,
     } = this.props;
 
     return (
@@ -46,8 +46,12 @@ class TreeNode extends Component {
           }
           {
             !isDeepestChild
-            ? child || null
-            : <span style={{ marginLeft: marginLeft - 5 }}>{child || null}</span>
+            ? <Component {...this.props} />
+            : (
+              <span style={{ marginLeft: marginLeft - 5 }}>
+                <Component {...this.props} />
+              </span>
+            )
           }
         </div>
         {

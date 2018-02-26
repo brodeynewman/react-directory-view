@@ -21,6 +21,7 @@ const mapChildrenRecursively = (props, tree, marginLeft = 15) => {
           isDeepestChild={!_.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}.length`)}
           onExpand={_.get(props, 'treeMap.onExpand', _.noop)}
           onContract={_.get(props, 'treeMap.onContract', _.noop)}
+          Component={_.get(props, 'treeMap.Component')}
           {...child}
         >
           {
