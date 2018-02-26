@@ -51,53 +51,53 @@ The ```treeMap``` prop is just an object containing the configuration for your t
 A basic example could like like below: 
 
 ```javascript
-  import React, { Fragment } from 'react';
-  import Tree from './components/Tree';
-  import ExampleComponent from './components/ExampleComponent';
+import React, { Fragment } from 'react';
+import Tree from './components/Tree';
+import ExampleComponent from './components/ExampleComponent';
 
-  const treeMapping = {
-    recursiveKey: 'children', // recursiveKey is set to 'children' by default
-    childToRender: 'path',
-    onExpand: treeProps => console.log('Expanding..', treeProps),
-    onContract: treeProps => console.log('Contracting..', treeProps),
-    Component: ExampleComponent,
-  };
+const treeMapping = {
+  recursiveKey: 'children', // recursiveKey is set to 'children' by default
+  childToRender: 'path',
+  onExpand: treeProps => console.log('Expanding..', treeProps),
+  onContract: treeProps => console.log('Contracting..', treeProps),
+  Component: ExampleComponent,
+};
 
-  const treeData = [
-    {
-      path: 'This',
-      children: [
-        {
-          path: 'Is',
-          children: [
-            {
-              path: 'Five',
-              children: [
-                {
-                  path: 'Levels',
-                  children: [
-                    {
-                      path: 'Deep',
-                      children: [],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ];
+const treeData = [
+  {
+    path: 'This',
+    children: [
+      {
+        path: 'Is',
+        children: [
+          {
+            path: 'Five',
+            children: [
+              {
+                path: 'Levels',
+                children: [
+                  {
+                    path: 'Deep',
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
 
-  const App = () => (
-    <Fragment>
-      <Tree
-        treeData={treeData}
-        treeMap={treeMapping}
-      />
-    </Fragment>
-  );
+const App = () => (
+  <Fragment>
+    <Tree
+      treeData={treeData}
+      treeMap={treeMapping}
+    />
+  </Fragment>
+);
 ```
 
 This will render a tree that looks like:
