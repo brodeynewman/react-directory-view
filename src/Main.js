@@ -4,11 +4,12 @@ import Tree from './components/Tree';
 import ExampleComponent from './components/ExampleComponent';
 
 const treeMapping = {
-  recursiveKey: 'children',
+  useCheckbox: true,
   childToRender: 'path',
+  recursiveKey: 'children',
+  Component: ExampleComponent,
   onExpand: treeProps => console.log('Expanding..', treeProps),
   onContract: treeProps => console.log('Contracting..', treeProps),
-  Component: ExampleComponent,
 };
 
 const App = () => (

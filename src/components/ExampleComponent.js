@@ -7,10 +7,6 @@ class Example extends Component {
     this.state = {};
   }
 
-  componentWillMount() {
-
-  }
-
   render() {
     console.log('Are these my props?', this.props);
 

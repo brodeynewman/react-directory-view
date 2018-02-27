@@ -19,6 +19,7 @@ const mapChildrenRecursively = (props, tree, marginLeft = 15) => {
         onExpand={_.get(props, 'treeMap.onExpand', _.noop)}
         onContract={_.get(props, 'treeMap.onContract', _.noop)}
         ComponentToRender={_.get(props, 'treeMap.Component', null)}
+        useCheckbox={_.get(props, 'treeMap.useCheckbox', true)}
         {...child}
       >
         {

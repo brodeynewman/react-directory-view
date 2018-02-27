@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Fragment, Component } from 'react';
-import Arrow from './arrow';
+import Arrow from './Arrow';
+import CheckBox from './Checkbox';
 
 class TreeNode extends Component {
   constructor(props) {
@@ -30,27 +31,33 @@ class TreeNode extends Component {
   render() {
     const { isCollapsed } = this.state;
     const {
-      marginLeft, isDeepestChild, children, ComponentToRender,
+      marginLeft, isDeepestChild, children, ComponentToRender, useCheckbox,
     } = this.props;
-
-    console.log('children', isCollapsed);
 
     return (
       <Fragment>
         <div>
           {
-            !isDeepestChild && (<Arrow
-              isCollapsed={isCollapsed}
-              onExpand={this.handleExpand}
-              onContract={this.handleContract}
-            />)
+            !isDeepestChild && (
+              useCheckbox
+              ? <CheckBox
+                isCollapsed={isCollapsed}
+                onExpand={this.handleExpand}
+                onContract={this.handleContract}
+              />
+              : <Arrow
+                isCollapsed={isCollapsed}
+                onExpand={this.handleExpand}
+                onContract={this.handleContract}
+              />
+            )
           }
           {
             !isDeepestChild
-            ? <ComponentToRender {...this.props} />
+            ? <ComponentToRender {...this.props} isCollapsed={isCollapsed} />
             : (
-              <span style={{ marginLeft: marginLeft - 5 }}>
-                <ComponentToRender {...this.props} />
+              <span>
+                <ComponentToRender {...this.props} isCollapsed={isCollapsed} />
               </span>
             )
           }
@@ -73,23 +80,25 @@ class TreeNode extends Component {
 }
 
 TreeNode.propTypes = {
-  marginLeft: PropTypes.number,
-  isDeepestChild: PropTypes.bool,
-  child: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  children: PropTypes.arrayOf(PropTypes.object),
-  ComponentToRender: PropTypes.func,
   onExpand: PropTypes.func,
   onContract: PropTypes.func,
+  useCheckbox: PropTypes.bool,
+  marginLeft: PropTypes.number,
+  isDeepestChild: PropTypes.bool,
+  ComponentToRender: PropTypes.func,
+  children: PropTypes.arrayOf(PropTypes.object),
+  child: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 TreeNode.defaultProps = {
-  marginLeft: 0,
-  isDeepestChild: false,
   child: '',
   children: [],
-  ComponentToRender: _.noop,
+  marginLeft: 0,
   onExpand: _.noop,
   onContract: _.noop,
+  useCheckbox: false,
+  isDeepestChild: false,
+  ComponentToRender: _.noop,
 };
 
 export default TreeNode;
