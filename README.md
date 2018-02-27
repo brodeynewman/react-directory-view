@@ -42,7 +42,7 @@ const treeMapping = {
   onExpand: treeProps => console.log('Expanding..', treeProps),
   /**
     * {function=}
-    * Callback to execute whenever a tree node is CONTRACTEd.
+    * Callback to execute whenever a tree node is CONTRACTED.
     * This callback receieves all of the tree node's props.
     */
   onContract: treeProps => console.log('Contracting..', treeProps),
