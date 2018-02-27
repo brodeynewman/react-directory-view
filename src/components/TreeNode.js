@@ -29,9 +29,8 @@ class TreeNode extends Component {
 
   render() {
     const { isCollapsed } = this.state;
-    const { collapseAll } = this.context;
     const {
-      marginLeft, isDeepestChild, child, children, Component,
+      marginLeft, isDeepestChild, children, ComponentToRender,
     } = this.props;
 
     return (
@@ -39,17 +38,17 @@ class TreeNode extends Component {
         <div>
           {
             !isDeepestChild && (<Arrow
-              isCollapsed={isCollapsed || collapseAll}
+              isCollapsed={isCollapsed}
               onExpand={this.handleExpand}
               onContract={this.handleContract}
             />)
           }
           {
             !isDeepestChild
-            ? <Component {...this.props} />
+            ? <ComponentToRender {...this.props} />
             : (
               <span style={{ marginLeft: marginLeft - 5 }}>
-                <Component {...this.props} />
+                <ComponentToRender {...this.props} />
               </span>
             )
           }
@@ -58,7 +57,7 @@ class TreeNode extends Component {
           children && (
             <div
               style={{
-                display: isCollapsed || collapseAll ? 'inline-block' : 'none',
+                display: isCollapsed ? 'inline-block' : 'none',
                 marginLeft,
               }}
             >
@@ -71,14 +70,24 @@ class TreeNode extends Component {
   }
 }
 
-TreeNode.contextTypes = {
-  collapseAll: PropTypes.bool,
-};
-
 TreeNode.propTypes = {
+  marginLeft: PropTypes.number,
+  isDeepestChild: PropTypes.bool,
+  child: PropTypes.oneOfType(['object']),
+  children: PropTypes.arrayOf(['object']),
+  ComponentToRender: PropTypes.element,
+  onExpand: PropTypes.func,
+  onContract: PropTypes.func,
 };
 
 TreeNode.defaultProps = {
+  marginLeft: 0,
+  isDeepestChild: false,
+  child: '',
+  children: [],
+  ComponentToRender: null,
+  onExpand: _.noop,
+  onContract: _.noop,
 };
 
 export default TreeNode;

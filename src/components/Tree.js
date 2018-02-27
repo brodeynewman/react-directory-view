@@ -10,30 +10,26 @@ import TreeNode from './TreeNode';
  */
 const mapChildrenRecursively = (props, tree, marginLeft = 15) => {
   if (tree.length) {
-    return _.map(tree, (child, index) => {
-      console.log(child);
-
-      return (
-        <TreeNode
-          key={_.uniqueId(`${index}`)}
-          child={_.get(child, `${_.get(props, 'treeMap.childToRender', '')}`)}
-          marginLeft={marginLeft}
-          isDeepestChild={!_.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}.length`)}
-          onExpand={_.get(props, 'treeMap.onExpand', _.noop)}
-          onContract={_.get(props, 'treeMap.onContract', _.noop)}
-          Component={_.get(props, 'treeMap.Component')}
-          {...child}
-        >
-          {
+    return _.map(tree, (child, index) => (
+      <TreeNode
+        key={_.uniqueId(`${index}`)}
+        child={_.get(child, `${_.get(props, 'treeMap.childToRender', '')}`)}
+        marginLeft={marginLeft}
+        isDeepestChild={!_.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}.length`)}
+        onExpand={_.get(props, 'treeMap.onExpand', _.noop)}
+        onContract={_.get(props, 'treeMap.onContract', _.noop)}
+        ComponentToRender={_.get(props, 'treeMap.Component', null)}
+        {...child}
+      >
+        {
             mapChildrenRecursively(
               props,
               _.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}`, []),
               marginLeft + 5,
             )
           }
-        </TreeNode>
-      );
-    });
+      </TreeNode>
+    ));
   }
 
   return null;
@@ -51,15 +47,7 @@ class Tree extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      collapseAll: false,
-    };
-
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  getChildContext() {
-    return { collapseAll: this.state.collapseAll };
   }
 
   handleClick() {
@@ -68,7 +56,6 @@ class Tree extends Component {
 
   render() {
     const { treeData } = this.props;
-    const { collapseAll } = this.state;
 
     const factoryWithProps = treeFactory(this.props);
 
@@ -84,14 +71,12 @@ class Tree extends Component {
   }
 }
 
-Tree.childContextTypes = {
-  collapseAll: PropTypes.bool,
-};
-
 Tree.propTypes = {
-};
-
-Tree.defaultProps = {
+  treeData: PropTypes.shape(PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+    PropTypes.Object,
+  ])).isRequired,
 };
 
 export default Tree;

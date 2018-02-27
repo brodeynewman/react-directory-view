@@ -1,4 +1,6 @@
+import _ from 'lodash';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const arrowStyling = {
   width: 0,
@@ -26,6 +28,20 @@ const Arrow = ({
     }}
   />
 );
+
+Arrow.propTypes = {
+  arrowStyles: PropTypes.objectOf('string'),
+  isCollapsed: PropTypes.bool,
+  onExpand: PropTypes.func,
+  onContract: PropTypes.func,
+};
+
+Arrow.defaultProps = {
+  arrowStyles: {},
+  isCollapsed: false,
+  onExpand: _.noop,
+  onContract: _.noop,
+};
 
 export default Arrow;
 
