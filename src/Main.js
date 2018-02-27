@@ -8,7 +8,7 @@ const treeMapping = {
   childToRender: 'path',
   onExpand: treeProps => console.log('Expanding..', treeProps),
   onContract: treeProps => console.log('Contracting..', treeProps),
-  Component: ExampleComponent,
+  component: ExampleComponent,
 };
 
 const App = () => (

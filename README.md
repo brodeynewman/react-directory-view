@@ -1,5 +1,8 @@
 # Easy to use directory tree component made for React
 
+You no longer need to write your recursion yourself. 
+Just import the ```Tree``` component, then supply a ```treeData``` prop which is the data you'll be recursively mapping over, and a ```treeMap``` which describes the options for your directory tree.
+
 ## How to use
 
 Import the ```Tree``` Component, and specify ```treeMap``` and ```treeData``` props.
@@ -18,37 +21,46 @@ The ```treeMap``` prop is just an object containing the configuration for your t
 ```javascript
 const treeMapping = {
   /**
+    * {string=}
     * recursiveKey is the key on your object tree which
     * the tree structure recursively maps over. By
     * default it looks for 'children'.
     */
   recursiveKey: 'dependents',
   /**
+    * {string=}
     * If a component isn't given to treeMapping, then
     * the 'childToRender' is rendered for each node in the tree.
     * This relates to the treeData you're passing to the Tree component.
     */
   childToRender: 'path',
   /**
+    * {function=}
     * Callback to execute whenever a tree node is EXPANDED.
     * This callback receieves all of the tree node's props.
     */
   onExpand: treeProps => console.log('Expanding..', treeProps),
   /**
+    * {function=}
     * Callback to execute whenever a tree node is CONTRACTEd.
     * This callback receieves all of the tree node's props.
     */
   onContract: treeProps => console.log('Contracting..', treeProps),
   /**
+    * {React.Component=}
     * The component to render inside of every node. For example.. 
     * if you wanted to render an <li /> for each node to build a table.
-    * This component will receieve all of the tree node's props. 
+    * This component will receieve all of the tree node's props.
+    * 
+    * A simple example could look like:
+    *
+    * Component: props => <li className="list-item-styling">{props.filePath}</li>
     */
   Component: ExampleComponent,
 };
 ```
 
-A basic example could like like below: 
+A basic example could like below: 
 
 ```javascript
 import React, { Fragment } from 'react';
