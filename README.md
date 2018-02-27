@@ -60,6 +60,11 @@ const treeMapping = {
 };
 ```
 
+## Live Demo
+
+[![Edit React-Directory-View](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/brodeynewman/react-directory-view)
+
+
 A basic example could like below: 
 
 ```javascript
