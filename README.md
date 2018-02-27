@@ -3,6 +3,10 @@
 You no longer need to write your recursion yourself. 
 Just import the ```Tree``` component, then supply a ```treeData``` prop which is the data you'll be recursively mapping over, and a ```treeMap``` which describes the options for your directory tree.
 
+## Live Demo
+
+[![Edit React-Directory-View](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/brodeynewman/react-directory-view)
+
 ## How to use
 
 Import the ```Tree``` Component, and specify ```treeMap``` and ```treeData``` props.
@@ -59,11 +63,6 @@ const treeMapping = {
   Component: ExampleComponent,
 };
 ```
-
-## Live Demo
-
-[![Edit React-Directory-View](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/brodeynewman/react-directory-view)
-
 
 A basic example could like below: 
 
