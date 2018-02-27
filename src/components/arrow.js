@@ -18,9 +18,10 @@ const arrowStyling = {
 };
 
 const Arrow = ({
-  onExpand, onContract, isCollapsed, arrowStyles = arrowStyling,
+  onExpand, onContract, isCollapsed, arrowStyles,
 }) => (
-  <i
+  <span
+    role="presentation"
     onClick={!isCollapsed ? onExpand : onContract}
     style={{
       ...arrowStyles,
@@ -30,14 +31,14 @@ const Arrow = ({
 );
 
 Arrow.propTypes = {
-  arrowStyles: PropTypes.objectOf('string'),
+  arrowStyles: PropTypes.objectOf(PropTypes.any),
   isCollapsed: PropTypes.bool,
   onExpand: PropTypes.func,
   onContract: PropTypes.func,
 };
 
 Arrow.defaultProps = {
-  arrowStyles: {},
+  arrowStyles: arrowStyling,
   isCollapsed: false,
   onExpand: _.noop,
   onContract: _.noop,

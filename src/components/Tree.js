@@ -72,11 +72,7 @@ class Tree extends Component {
 }
 
 Tree.propTypes = {
-  treeData: PropTypes.shape(PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.string,
-    PropTypes.Object,
-  ])).isRequired,
+  treeData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Tree;

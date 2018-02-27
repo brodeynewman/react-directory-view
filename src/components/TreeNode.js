@@ -33,6 +33,8 @@ class TreeNode extends Component {
       marginLeft, isDeepestChild, children, ComponentToRender,
     } = this.props;
 
+    console.log('children', isCollapsed);
+
     return (
       <Fragment>
         <div>
@@ -73,9 +75,9 @@ class TreeNode extends Component {
 TreeNode.propTypes = {
   marginLeft: PropTypes.number,
   isDeepestChild: PropTypes.bool,
-  child: PropTypes.oneOfType(['object']),
-  children: PropTypes.arrayOf(['object']),
-  ComponentToRender: PropTypes.element,
+  child: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  children: PropTypes.arrayOf(PropTypes.object),
+  ComponentToRender: PropTypes.func,
   onExpand: PropTypes.func,
   onContract: PropTypes.func,
 };
@@ -85,7 +87,7 @@ TreeNode.defaultProps = {
   isDeepestChild: false,
   child: '',
   children: [],
-  ComponentToRender: null,
+  ComponentToRender: _.noop,
   onExpand: _.noop,
   onContract: _.noop,
 };
