@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { machOne } from './mocks';
 import Tree from './components/Tree';
-import ExampleComponent from './components/ExampleComponent';
+import ExampleComponent from './components/exampleComponent/ExampleComponent';
 
 const treeMapping = {
   useCheckbox: true,

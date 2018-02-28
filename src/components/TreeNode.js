@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Fragment, Component } from 'react';
-import Arrow from './Arrow';
-import CheckBox from './Checkbox';
+import Arrow from './arrow/Arrow';
+import CheckBox from './checkbox/Checkbox';
 
 class TreeNode extends Component {
   constructor(props) {
@@ -31,46 +31,40 @@ class TreeNode extends Component {
   render() {
     const { isCollapsed } = this.state;
     const {
-      marginLeft, isDeepestChild, children, ComponentToRender, useCheckbox,
+      isDeepestChild, children, ComponentToRender, useCheckbox,
     } = this.props;
 
     return (
       <Fragment>
         <div>
-          {
-            !isDeepestChild && (
-              useCheckbox
-              ? <CheckBox
-                isCollapsed={isCollapsed}
-                onExpand={this.handleExpand}
-                onContract={this.handleContract}
-              />
-              : <Arrow
-                isCollapsed={isCollapsed}
-                onExpand={this.handleExpand}
-                onContract={this.handleContract}
-              />
-            )
-          }
-          {
-            !isDeepestChild
-            ? <ComponentToRender {...this.props} isCollapsed={isCollapsed} />
-            : (
-              <span>
-                <ComponentToRender {...this.props} isCollapsed={isCollapsed} />
-              </span>
-            )
-          }
+          <ComponentToRender
+            TogglingComponent={
+              !isDeepestChild && (
+                useCheckbox
+                ? <CheckBox
+                  isCollapsed={isCollapsed}
+                  onExpand={this.handleExpand}
+                  onContract={this.handleContract}
+                />
+                : <Arrow
+                  isCollapsed={isCollapsed}
+                  onExpand={this.handleExpand}
+                  onContract={this.handleContract}
+                />
+              )
+            }
+            {...this.props}
+            isCollapsed={isCollapsed}
+          />
         </div>
         {
           children && (
             <div
               style={{
-                display: isCollapsed ? 'inline-block' : 'none',
-                marginLeft,
+                display: isCollapsed ? 'block' : 'none',
               }}
             >
-              {this.props.children}
+              { this.props.children }
             </div>
           )
         }
@@ -83,7 +77,6 @@ TreeNode.propTypes = {
   onExpand: PropTypes.func,
   onContract: PropTypes.func,
   useCheckbox: PropTypes.bool,
-  marginLeft: PropTypes.number,
   isDeepestChild: PropTypes.bool,
   ComponentToRender: PropTypes.func,
   children: PropTypes.arrayOf(PropTypes.object),
@@ -93,7 +86,6 @@ TreeNode.propTypes = {
 TreeNode.defaultProps = {
   child: '',
   children: [],
-  marginLeft: 0,
   onExpand: _.noop,
   onContract: _.noop,
   useCheckbox: false,

@@ -1,26 +1,13 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const arrowStyling = {
-  width: 0,
-  height: 0,
-  border: '4px solid transparent',
-  borderTop: '4px solid',
-  borderRight: '4px solid',
-  margin: 15,
-  position: 'relative',
-  display: 'inline-block',
-  verticalAlign: 'middle',
-  color: '#666',
-  boxSizing: 'border-box',
-  cursor: 'pointer',
-};
+import styles from './arrow.css';
 
 const Arrow = ({
   onExpand, onContract, isCollapsed, arrowStyles,
 }) => (
   <span
+    className={styles.arrow}
     role="presentation"
     onClick={!isCollapsed ? onExpand : onContract}
     style={{
@@ -38,7 +25,7 @@ Arrow.propTypes = {
 };
 
 Arrow.defaultProps = {
-  arrowStyles: arrowStyling,
+  arrowStyles: {},
   isCollapsed: false,
   onExpand: _.noop,
   onContract: _.noop,

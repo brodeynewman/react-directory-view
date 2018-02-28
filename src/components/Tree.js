@@ -2,23 +2,24 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import TreeNode from './TreeNode';
+import DefaultComponent from './defaultComponent/Default';
 
 /**
  * Recursively maps over a tree, and renders tree nodes
  * @param {Object} props - component props
  * @param {Object} tree - current tree node
  */
-const mapChildrenRecursively = (props, tree, marginLeft = 15) => {
+const mapChildrenRecursively = (props, tree, moveLeft = 0) => {
   if (tree.length) {
     return _.map(tree, (child, index) => (
       <TreeNode
         key={_.uniqueId(`${index}`)}
         child={_.get(child, `${_.get(props, 'treeMap.childToRender', '')}`)}
-        marginLeft={marginLeft}
+        moveLeft={moveLeft}
         isDeepestChild={!_.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}.length`)}
         onExpand={_.get(props, 'treeMap.onExpand', _.noop)}
         onContract={_.get(props, 'treeMap.onContract', _.noop)}
-        ComponentToRender={_.get(props, 'treeMap.Component', null)}
+        ComponentToRender={_.get(props, 'treeMap.Component', DefaultComponent)}
         useCheckbox={_.get(props, 'treeMap.useCheckbox', true)}
         {...child}
       >
@@ -26,7 +27,7 @@ const mapChildrenRecursively = (props, tree, marginLeft = 15) => {
             mapChildrenRecursively(
               props,
               _.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}`, []),
-              marginLeft + 5,
+              moveLeft + 15,
             )
           }
       </TreeNode>
