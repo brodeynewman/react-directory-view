@@ -27,7 +27,7 @@ const mapChildrenRecursively = (props, tree, moveLeft = 0) => {
             mapChildrenRecursively(
               props,
               _.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}`, []),
-              moveLeft + 15,
+              moveLeft + (_.get(props, 'treeMap.textPadding', 15)),
             )
           }
       </TreeNode>
@@ -61,6 +61,7 @@ class Tree extends Component {
 
     const factoryWithProps = treeFactory(this.props);
 
+    console.log(this.props);
     return (
       <div>
         {
