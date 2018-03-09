@@ -39,6 +39,11 @@ const treeMapping = {
     */
   childToRender: 'path',
   /**
+    * {number=}
+    * Specify the amount of padding you want each child node to receive.
+    */
+  paddingLeft: 30,
+  /**
     * {function=}
     * Callback to execute whenever a tree node is EXPANDED.
     * This callback receieves all of the tree node's props.
@@ -74,6 +79,7 @@ import ExampleComponent from './components/ExampleComponent';
 const treeMapping = {
   recursiveKey: 'children', // recursiveKey is set to 'children' by default
   childToRender: 'path',
+  paddingLeft: 25,
   onExpand: treeProps => console.log('Expanding..', treeProps),
   onContract: treeProps => console.log('Contracting..', treeProps),
   Component: ExampleComponent,

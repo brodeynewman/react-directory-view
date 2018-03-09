@@ -9,25 +9,25 @@ import DefaultComponent from './defaultComponent/Default';
  * @param {Object} props - component props
  * @param {Object} tree - current tree node
  */
-const mapChildrenRecursively = (props, tree, moveLeft = 0) => {
+const mapChildrenRecursively = (props, tree, paddingLeft = 0) => {
   if (tree.length) {
     return _.map(tree, (child, index) => (
       <TreeNode
         key={_.uniqueId(`${index}`)}
         child={_.get(child, `${_.get(props, 'treeMap.childToRender', '')}`)}
-        moveLeft={moveLeft}
+        paddingLeft={paddingLeft}
         isDeepestChild={!_.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}.length`)}
         onExpand={_.get(props, 'treeMap.onExpand', _.noop)}
         onContract={_.get(props, 'treeMap.onContract', _.noop)}
         ComponentToRender={_.get(props, 'treeMap.Component', DefaultComponent)}
-        useCheckbox={_.get(props, 'treeMap.useCheckbox', true)}
+        useCheckbox={_.get(props, 'treeMap.useCheckbox', false)}
         {...child}
       >
         {
             mapChildrenRecursively(
               props,
               _.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}`, []),
-              moveLeft + (_.get(props, 'treeMap.textPadding', 15)),
+              paddingLeft + (_.get(props, 'treeMap.paddingLeft', 15)),
             )
           }
       </TreeNode>
@@ -61,7 +61,6 @@ class Tree extends Component {
 
     const factoryWithProps = treeFactory(this.props);
 
-    console.log(this.props);
     return (
       <div>
         {

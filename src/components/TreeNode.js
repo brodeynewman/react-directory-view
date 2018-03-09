@@ -31,7 +31,10 @@ class TreeNode extends Component {
   render() {
     const { isCollapsed } = this.state;
     const {
-      isDeepestChild, children, ComponentToRender, useCheckbox,
+      isDeepestChild,
+      children,
+      ComponentToRender,
+      useCheckbox,
     } = this.props;
 
     return (
@@ -39,34 +42,33 @@ class TreeNode extends Component {
         <div>
           <ComponentToRender
             TogglingComponent={
-              !isDeepestChild && (
+              !isDeepestChild
+              ? (
                 useCheckbox
-                ? <CheckBox
-                  isCollapsed={isCollapsed}
-                  onExpand={this.handleExpand}
-                  onContract={this.handleContract}
-                />
-                : <Arrow
+                ? (
+                  <CheckBox
+                    isCollapsed={isCollapsed}
+                    onExpand={this.handleExpand}
+                    onContract={this.handleContract}
+                  />
+                ) : <Arrow
                   isCollapsed={isCollapsed}
                   onExpand={this.handleExpand}
                   onContract={this.handleContract}
                 />
               )
+              : null
             }
             {...this.props}
             isCollapsed={isCollapsed}
           />
         </div>
         {
-          children && (
-            <div
-              style={{
-                display: isCollapsed ? 'block' : 'none',
-              }}
-            >
+          children && isCollapsed ? (
+            <div>
               { this.props.children }
             </div>
-          )
+          ) : null
         }
       </Fragment>
     );

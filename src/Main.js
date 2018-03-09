@@ -8,7 +8,7 @@ const treeMapping = {
   childToRender: 'path',
   recursiveKey: 'children',
   Component: ExampleComponent,
-  textPadding: 30,
+  paddingLeft: 30,
   onExpand: treeProps => console.log('Expanding..', treeProps),
   onContract: treeProps => console.log('Contracting..', treeProps),
 };

@@ -10,11 +10,11 @@ class Example extends Component {
   }
 
   render() {
-    const { TogglingComponent, child, moveLeft } = this.props;
+    const { TogglingComponent, child, paddingLeft } = this.props;
 
     return (
       <div className={styles.exampleComponent}>
-        <span style={{ marginLeft: moveLeft }}>
+        <span style={{ paddingLeft }}>
           {
             TogglingComponent
           }
@@ -28,9 +28,15 @@ class Example extends Component {
 }
 
 Example.propTypes = {
-  TogglingComponent: PropTypes.func.isRequired,
+  TogglingComponent: PropTypes.oneOfType([
+    PropTypes.func, PropTypes.object,
+  ]),
   child: PropTypes.string.isRequired,
-  moveLeft: PropTypes.number.isRequired,
+  paddingLeft: PropTypes.number.isRequired,
+};
+
+Example.defaultProps = {
+  TogglingComponent: null,
 };
 
 export default Example;
