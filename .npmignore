@@ -3,3 +3,4 @@ coverage
 npm
 test
 .cache
+node_modules
