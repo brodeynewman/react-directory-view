@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './example.css';
+import styles from './styles';
 
 class Example extends Component {
   constructor(props) {
@@ -13,8 +13,8 @@ class Example extends Component {
     const { TogglingComponent, child, paddingLeft } = this.props;
 
     return (
-      <div className={styles.exampleComponent}>
-        <span style={{ paddingLeft }}>
+      <div>
+        <span style={{ paddingLeft, ...styles }}>
           {
             TogglingComponent
           }
