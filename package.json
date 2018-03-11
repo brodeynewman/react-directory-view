@@ -1,6 +1,6 @@
 {
   "name": "react-directory-view",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Directory tree component made for React",
   "main": "./dist/index.js",
   "scripts": {
