@@ -11,9 +11,9 @@ import DefaultComponent from './defaultComponent/Default';
  */
 const mapChildrenRecursively = (props, tree, paddingLeft = 0) => {
   if (tree.length) {
-    return _.map(tree, (child, index) => (
+    return _.map(tree, child => (
       <TreeNode
-        key={_.uniqueId(`${index}`)}
+        key={_.get(child, `${_.get(props, 'treeMap.nodeKey', '')}`)}
         child={_.get(child, `${_.get(props, 'treeMap.childToRender', '')}`)}
         paddingLeft={paddingLeft}
         isDeepestChild={!_.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}.length`)}
@@ -21,6 +21,8 @@ const mapChildrenRecursively = (props, tree, paddingLeft = 0) => {
         onContract={_.get(props, 'treeMap.onContract', _.noop)}
         ComponentToRender={_.get(props, 'treeMap.Component', DefaultComponent)}
         useCheckbox={_.get(props, 'treeMap.useCheckbox', false)}
+        checkboxStyles={_.get(props, 'checkboxStyles', {})}
+        arrowStyles={_.get(props, 'arrowStyles', {})}
         {...child}
       >
         {

@@ -2,33 +2,34 @@
   "name": "react-directory-view",
   "version": "1.0.4",
   "description": "Directory tree component made for React",
-  "main": "./dist/index.js",
+  "source": "./index.js",
+  "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build ./index.js",
-    "start": "parcel ./src/index.html",
+    "build": "webpack",
     "prepublish": "npm run build"
   },
   "author": "brodeynewman",
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "^8.0.0",
     "lodash": "^4.17.5",
-    "postcss-modules": "^1.1.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.18.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
-    "parcel-bundler": "^1.6.2"
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.11"
   }
 }

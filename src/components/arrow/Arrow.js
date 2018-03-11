@@ -1,16 +1,16 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './arrow.css';
+import styles from './styles';
 
 const Arrow = ({
   onExpand, onContract, isCollapsed, arrowStyles,
 }) => (
   <span
-    className={styles.arrow}
     role="presentation"
     onClick={!isCollapsed ? onExpand : onContract}
     style={{
+      ...styles,
       ...arrowStyles,
       transform: `rotate(${isCollapsed ? '135deg' : '45deg'})`,
     }}

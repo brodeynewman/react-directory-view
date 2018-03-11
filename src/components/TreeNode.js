@@ -32,9 +32,10 @@ class TreeNode extends Component {
     const { isCollapsed } = this.state;
     const {
       isDeepestChild,
-      children,
       ComponentToRender,
       useCheckbox,
+      checkboxStyles,
+      arrowStyles,
     } = this.props;
 
     return (
@@ -50,11 +51,13 @@ class TreeNode extends Component {
                     isCollapsed={isCollapsed}
                     onExpand={this.handleExpand}
                     onContract={this.handleContract}
+                    checkboxStyles={checkboxStyles}
                   />
                 ) : <Arrow
                   isCollapsed={isCollapsed}
                   onExpand={this.handleExpand}
                   onContract={this.handleContract}
+                  arrowStyles={arrowStyles}
                 />
               )
               : null
@@ -64,11 +67,13 @@ class TreeNode extends Component {
           />
         </div>
         {
-          children && isCollapsed ? (
-            <div>
-              { this.props.children }
-            </div>
-          ) : null
+          <div style={{
+            display: isCollapsed ? 'block' : 'none',
+            visibility: isCollapsed ? 'visible' : 'hidden',
+          }}
+          >
+            { this.props.children }
+          </div>
         }
       </Fragment>
     );
@@ -83,6 +88,8 @@ TreeNode.propTypes = {
   ComponentToRender: PropTypes.func,
   children: PropTypes.arrayOf(PropTypes.object),
   child: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  arrowStyles: PropTypes.objectOf(PropTypes.any),
+  checkboxStyles: PropTypes.objectOf(PropTypes.any),
 };
 
 TreeNode.defaultProps = {
@@ -93,6 +100,8 @@ TreeNode.defaultProps = {
   useCheckbox: false,
   isDeepestChild: false,
   ComponentToRender: _.noop,
+  checkboxStyles: {},
+  arrowStyles: {},
 };
 
 export default TreeNode;

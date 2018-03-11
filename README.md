@@ -32,6 +32,11 @@ const treeMapping = {
     */
   recursiveKey: 'dependents',
   /**
+    * {string}
+    * The React key given to each JSX node for dom comparison.
+    */
+  nodeKey: 'id',
+  /**
     * {string=}
     * If a component isn't given to treeMapping, then
     * the 'childToRender' is rendered for each node in the tree.

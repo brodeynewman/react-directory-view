@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './checkbox.css';
+import styles from './styles';
 
 const CheckBox = ({
-  onExpand, onContract, isCollapsed,
+  onExpand, onContract, isCollapsed, checkboxStyles,
 }) => (
   <input
-    id="styledCheckbox"
-    className={styles.styledCheckbox}
+    style={{
+        ...styles,
+        ...checkboxStyles,
+       }}
     type="checkbox"
     checked={isCollapsed}
     onChange={!isCollapsed ? onExpand : onContract}
@@ -18,6 +20,11 @@ CheckBox.propTypes = {
   onExpand: PropTypes.func.isRequired,
   onContract: PropTypes.func.isRequired,
   isCollapsed: PropTypes.bool.isRequired,
+  checkboxStyles: PropTypes.objectOf(PropTypes.any),
+};
+
+CheckBox.defaultProps = {
+  checkboxStyles: {},
 };
 
 export default CheckBox;
