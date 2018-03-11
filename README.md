@@ -1,4 +1,4 @@
-# Easy to use directory tree component made for React
+# React Directory View
 
 You no longer need to write your recursion yourself. 
 Just import the ```Tree``` component, then supply a ```treeData``` prop which is the data you'll be recursively mapping over, and a ```treeMap``` which describes the options for your directory tree.

@@ -1,5 +1,3 @@
-import React from 'react';
-import reactDom from 'react-dom';
-import App from './Main';
+import Tree from './components/Tree';
 
-reactDom.render(<App />, document.getElementById('root'));
+export default Tree;
