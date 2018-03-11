@@ -2,14 +2,14 @@
   "name": "react-directory-view",
   "version": "1.0.1",
   "description": "Directory tree component made for React",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build ./index.js",
     "start": "parcel ./src/index.html",
     "prepublish": "npm run build"
   },
-  "author": "@brodeynewman",
+  "author": "brodeynewman",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^8.0.0",

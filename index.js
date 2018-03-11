@@ -1,3 +1,3 @@
-import Tree from './dist/react-directory-view';
+import Tree from './src';
 
 export default Tree;
