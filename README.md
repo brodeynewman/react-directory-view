@@ -83,6 +83,7 @@ import ExampleComponent from './components/ExampleComponent';
 
 const treeMapping = {
   recursiveKey: 'children', // recursiveKey is set to 'children' by default
+  nodeKey: 'id',
   childToRender: 'path',
   paddingLeft: 25,
   onExpand: treeProps => console.log('Expanding..', treeProps),
@@ -92,19 +93,24 @@ const treeMapping = {
 
 const treeData = [
   {
-    path: 'This',
+    path: 'this',
+    id: 1,
     children: [
       {
-        path: 'Is',
+        path: 'is',
+        id: 2,
         children: [
           {
-            path: 'Five',
+            path: 'a',
+            id: 3,
             children: [
               {
-                path: 'Levels',
+                path: 'few',
+                id: 4,
                 children: [
                   {
-                    path: 'Deep',
+                    path: 'deep',
+                    id: 5,
                     children: [],
                   },
                 ],
@@ -130,10 +136,9 @@ const App = () => (
 This will render a tree that looks like:
 
   ```bash
-
-  This
-    Is
-      Five
-        Levels
+  > This
+    > Is
+      > A
+        > Few
           Deep
   ```
