@@ -10,7 +10,7 @@ yarn-error.log*
 .cache
 
 # Coverage report
-coverage
+/coverage
 
 # Optional npm cache directory
 .npm
