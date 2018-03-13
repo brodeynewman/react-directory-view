@@ -9,6 +9,9 @@ yarn-error.log*
 # Parcel cache
 .cache
 
+# Coverage report
+coverage
+
 # Optional npm cache directory
 .npm
 
