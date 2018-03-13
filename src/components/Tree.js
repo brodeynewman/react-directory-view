@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import TreeNode from './TreeNode';
 import DefaultComponent from './defaultComponent/Default';
 
@@ -9,7 +9,7 @@ import DefaultComponent from './defaultComponent/Default';
  * @param {Object} props - component props
  * @param {Object} tree - current tree node
  */
-const mapChildrenRecursively = (props, tree, paddingLeft = 0) => {
+export const mapChildrenRecursively = (props, tree, paddingLeft = 0) => {
   if (tree.length) {
     return _.map(tree, child => (
       <TreeNode
@@ -47,33 +47,21 @@ const treeFactory = props => ({
   mapChildrenRecursively: _.partial(mapChildrenRecursively, props),
 });
 
-class Tree extends Component {
-  constructor(props) {
-    super(props);
+const Tree = (props) => {
+  const { treeData } = props;
 
-    this.handleClick = this.handleClick.bind(this);
-  }
+  const factoryWithProps = treeFactory(props);
 
-  handleClick() {
-    this.setState(prevState => ({ collapseAll: !prevState.collapseAll }));
-  }
-
-  render() {
-    const { treeData } = this.props;
-
-    const factoryWithProps = treeFactory(this.props);
-
-    return (
-      <div>
-        {
-          treeData ?
-          factoryWithProps.mapChildrenRecursively(treeData)
-          : null
-        }
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {
+        treeData ?
+        factoryWithProps.mapChildrenRecursively(treeData)
+        : null
+      }
+    </div>
+  );
+};
 
 Tree.propTypes = {
   treeData: PropTypes.arrayOf(PropTypes.object).isRequired,
