@@ -1,7 +1,7 @@
 # React Directory View
 
 You no longer need to write your recursion yourself. 
-Just import the ```Tree``` component, then supply a ```treeData``` prop which is the data you'll be recursively mapping over, and a ```treeMap``` which describes the options for your directory tree.
+Just import the ```Tree``` component and supply a ```treeData``` and ```treeMap``` props.
 
 ## Live Demo
 
@@ -30,7 +30,7 @@ const treeMapping = {
     * the tree structure recursively maps over. By
     * default it looks for 'children'.
     */
-  recursiveKey: 'dependents',
+  recursiveKey: 'children',
   /**
     * {string}
     * The React key given to each JSX node for dom comparison.
@@ -43,34 +43,6 @@ const treeMapping = {
     * This relates to the treeData you're passing to the Tree component.
     */
   childToRender: 'path',
-  /**
-    * {number=}
-    * Specify the amount of padding you want each child node to receive.
-    */
-  paddingLeft: 30,
-  /**
-    * {function=}
-    * Callback to execute whenever a tree node is EXPANDED.
-    * This callback receieves all of the tree node's props.
-    */
-  onExpand: treeProps => console.log('Expanding..', treeProps),
-  /**
-    * {function=}
-    * Callback to execute whenever a tree node is CONTRACTED.
-    * This callback receieves all of the tree node's props.
-    */
-  onContract: treeProps => console.log('Contracting..', treeProps),
-  /**
-    * {React.Component=}
-    * The component to render inside of every node. For example.. 
-    * if you wanted to render an <li /> for each node to build a table.
-    * This component will receieve all of the tree node's props.
-    * 
-    * A simple example could look like:
-    *
-    * Component: props => <li className="list-item-styling">{props.filePath}</li>
-    */
-  Component: ExampleComponent,
 };
 ```
 
@@ -85,10 +57,6 @@ const treeMapping = {
   recursiveKey: 'children', // recursiveKey is set to 'children' by default
   nodeKey: 'id',
   childToRender: 'path',
-  paddingLeft: 25,
-  onExpand: treeProps => console.log('Expanding..', treeProps),
-  onContract: treeProps => console.log('Contracting..', treeProps),
-  Component: ExampleComponent,
 };
 
 const treeData = [
@@ -142,3 +110,15 @@ This will render a tree that looks like:
         > Few
           Deep
   ```
+
+|  Prop  | Default |  required  | Description |
+:--------|:--------:|:----------:|:------------
+treeData | Empty array | Yes | The data to recursively map over
+treeMap  | Empty object | Yes | Describes the nodes / keys to use when mapping over each child array
+useCheckbox | False | No | Wether to use checkboxes or not
+checkboxStyles | Empty object | No | Style object used to add or override checkbox styles
+arrowStyles | empty object | No | Style object used to add or override arrow styles
+Component | None | No | A component to render for each node in the object tree. Receives all props from the treeNode.
+paddingLeft | 15px | No | The amount of padding to add for each child
+onContract | noOp | No | Callback to be invoked every time a child node is collapsed
+onExpand | noOp | No | Callback to be invoked every time a child node is expanded
