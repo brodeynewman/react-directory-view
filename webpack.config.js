@@ -15,7 +15,7 @@ module.exports = {
           path.resolve(__dirname, 'src'),
           path.resolve(__dirname, 'test'),
         ],
-        exclude: /(node_modules|bower_components|build)/,
+        exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
