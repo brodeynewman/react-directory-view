@@ -23,27 +23,3 @@ exports[`Arrow Arrow renders correctly 1`] = `
   }
 />
 `;
-
-exports[`Arrow Tree renders a div if treeData is non-existent 1`] = `
-<span
-  onClick={[Function]}
-  role="presentation"
-  style={
-    Object {
-      "border": "4px solid transparent",
-      "borderRight": "4px solid",
-      "borderTop": "4px solid",
-      "boxSizing": "border-box",
-      "color": "#666",
-      "cursor": "pointer",
-      "display": "inline-block",
-      "height": 0,
-      "margin": 15,
-      "position": "relative",
-      "transform": "rotate(45deg)",
-      "verticalAlign": "middle",
-      "width": 0,
-    }
-  }
-/>
-`;
