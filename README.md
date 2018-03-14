@@ -3,6 +3,8 @@
 You no longer need to write your recursion yourself. 
 Just import the ```Tree``` component and supply ```treeData``` and ```treeMap``` props.
 
+[![Build Status](https://travis-ci.org/brodeynewman/react-directory-view.png?branch=master)](https://travis-ci.org/brodeynewman/react-directory-view)
+
 ## How to use
 
 Import the ```Tree``` Component, and specify ```treeMap``` and ```treeData``` props.
