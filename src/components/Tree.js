@@ -17,10 +17,10 @@ export const mapChildrenRecursively = (props, tree, paddingLeft = 0) => {
         child={_.get(child, `${_.get(props, 'treeMap.childToRender', '')}`)}
         paddingLeft={paddingLeft}
         isDeepestChild={!_.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}.length`)}
-        onExpand={_.get(props, 'treeMap.onExpand', _.noop)}
-        onContract={_.get(props, 'treeMap.onContract', _.noop)}
-        ComponentToRender={_.get(props, 'treeMap.Component', DefaultComponent)}
-        useCheckbox={_.get(props, 'treeMap.useCheckbox', false)}
+        onExpand={_.get(props, 'onExpand', _.noop)}
+        onContract={_.get(props, 'onContract', _.noop)}
+        ComponentToRender={_.get(props, 'Component', DefaultComponent)}
+        useCheckbox={_.get(props, 'useCheckbox', false)}
         checkboxStyles={_.get(props, 'checkboxStyles', {})}
         arrowStyles={_.get(props, 'arrowStyles', {})}
         {...child}
@@ -29,7 +29,7 @@ export const mapChildrenRecursively = (props, tree, paddingLeft = 0) => {
             mapChildrenRecursively(
               props,
               _.get(child, `${_.get(props, 'treeMap.recursiveKey', 'children')}`, []),
-              paddingLeft + (_.get(props, 'treeMap.paddingLeft', 15)),
+              paddingLeft + (_.get(props, 'paddingLeft', 15)),
             )
           }
       </TreeNode>
