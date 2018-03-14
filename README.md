@@ -1,11 +1,7 @@
 # React Directory View
 
 You no longer need to write your recursion yourself. 
-Just import the ```Tree``` component and supply a ```treeData``` and ```treeMap``` props.
-
-## Live Demo
-
-[![Edit React-Directory-View](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/brodeynewman/react-directory-view)
+Just import the ```Tree``` component and supply ```treeData``` and ```treeMap``` props.
 
 ## How to use
 
@@ -110,6 +106,8 @@ This will render a tree that looks like:
         > Few
           Deep
   ```
+
+## Props
 
 |  Prop  | Default |  required  | Description |
 :--------|:--------:|:----------:|:------------
